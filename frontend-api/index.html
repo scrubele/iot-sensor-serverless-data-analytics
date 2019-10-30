@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Robotics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple crud app made with the vue js and django">
+
+    <meta name="keywords" content="vuejs, django, crudapp, restapi">
+    <!-- bootstap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- boostrap css -->
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<Body>
+    <div id="starting">
+        <div class="container">
+            <div class="row text-center justify-content-center m-5">
+                <h1 class="text-center">Список об'єктів, що охороняються:
+          <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#addProtectedObjectModal">ADD </button>
+          </h1>
+            </div>
+            <div class="row">
+                <!-- <div> -->
+                <div class="col-xl col-lg-4 col-md-6 col-sm-6 pb-4 col-md-offset-1 m-2" style="min-width:300px;max-width:500px" v-for="protectedObject in protectedObjects">
+                    <div class="card">
+                        <img class="card-img-top" src="1.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title"><b>Назва території:</b> ${protectedObject.name}</h5>
+                            <p class="card-text"><b>Код території:</b> ${protectedObject.id}</p>
+                        </div>
+                        <ul class="list-group list-group-flush ">
+
+                            <li class="list-group-item "><b>Опис території:</b> ${protectedObject.description}</li>
+                            <li class="list-group-item "><b>Розмір території:</b> ${protectedObject.size}</li>
+
+                            <li class="list-group-item col-xs-6 p-10"><b>Роботи:</b>
+                                <!-- ${protectedObject.robots} -->
+                                <button type="button" class="btn btn-primary m-1" data-toggle="modal" data-target="#addRobotsToProtectedObjectModal" v-on:click="selectObject(protectedObject)">ADD </button>
+                                <ul class="list-group">
+                                    <li class="list-group-item " v-for="robot in protectedObject.robots" :key="robot">
+                                        <h5 class="card-title"><b>Назва робота:</b> ${robot.name}</h5>
+                                        <p class="card-text"><b>Алгоритм:</b> ${robot.detection_algorithm}</p>          
+                                        <p class="card-text"><b>Ціна:</b> ${robot.price}</p>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <button type="button" class="btn btn-primary"><b>Траекторії об'їзду:</b></button>
+                    </div>,
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="addProtectedObjectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">ADD Protected Object</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form v-on:submit.prevent="addProtectedObject()">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="name">Protected Object Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter Protected Object Name" v-model="newProtectedObject.name" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Protected Object Description</label>
+                                <textarea class="form-control" id="description" placeholder="Enter Protected Object Description" v-model="newProtectedObject.description" required="required" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="size">Protected Object Size</label>
+                                <textarea class="form-control" id="size" placeholder="Enter Protected Object Size" v-model="newProtectedObject.size" required="required" rows="1"></textarea>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary m-progress" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- <div class="loading" v-if="loading===true">Loading&#8230;</div> -->
+        </div>
+        <!-- End of add protectedObject modal -->
+        <div class="modal fade" id="addRobotsToProtectedObjectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Add a robot to the protected object</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <form v-on:sumbit.prevent="addProtectedObject()">
+                      <div class="modal-body">
+                          <div class="form-group">
+                              <label for="name">Protected Object Name</label>
+                              <input type="text" class="form-control" id="name" placeholder="Enter Protected Object Name" v-model="newRobot.name" required="required">
+                          </div>
+                          <div class="form-group">
+                              <label for="detection_algorithm">Protected Object detection_algorithm</label>
+                              <textarea class="form-control" id="detection_algorithm" placeholder="Enter Protected Object detection algorithm" v-model="newRobot.detection_algorithm" required="required" rows="3"></textarea>
+                          </div>
+                          <div class="form-group">
+                              <label for="price">Protected Object price</label>
+                              <textarea class="form-control" id="price" placeholder="Enter Protected Object price" v-model="newRobot.price" required="required" rows="1"></textarea>
+                          </div>
+
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary m-progress" data-dismiss="modal">Close</button>
+                          <button type ="submit" class="btn btn-primary" >Save changes</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+          <!-- <div class="loading" v-if="loading===true">Loading&#8230;</div> -->
+      </div>
+      <!-- End of add protectedObject modal -->
+    </div>
+    </div>
+
+    </div>
+
+    <!-- bootrtap js files -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- vue.js files -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
+    <script type="text/javascript" src="scripts.js"></script>
+</Size>
+
+</html>
