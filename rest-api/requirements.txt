@@ -1,7 +1,0 @@
-Django==2.2.6
-drf_nested_routers==0.91
-django_rest_auth==0.9.5
-django_allauth==0.40.0
-PyJWT==1.7.1
-djangorestframework==3.10.3
-rest_framework_nested==0.1.0
