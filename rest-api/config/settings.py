@@ -25,7 +25,11 @@ SECRET_KEY = ')5+2f3_6-ltvy9%j6hbfb(h2)3)^kae25no-o0+b8e!hus_@w('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'desktop-re6fj4e',
+    '.appspot.com', # must add the app engine (project-id) domain here
+    '127.0.0.1', # for local testing 
+]
 
 
 # Application definition
@@ -95,16 +99,29 @@ WSGI_APPLICATION = 'config.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'cloud',
-        'USER': 'scrubele',
-        'PASSWORD': 'qwer1234****',
-        'HOST': 'localhost',
-        'PORT': '',
+if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine'):
+    # Running on production App Engine, so connect to Google Cloud SQL using
+    # the unix socket at /cloudsql/<your-cloudsql-connection string>
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'HOST': os.environ['DB_HOST'],
+            'NAME': os.environ['DB_NAME'],
+            'USER': os.environ['DB_USER'],
+            'PASSWORD': os.environ['DB_PASSWORD']
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'cloud',
+            'USER': 'scrubele',
+            'PASSWORD': 'qwer1234****',
+            'HOST': 'localhost',
+            'PORT': '',
+        }
+    }
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
@@ -179,3 +196,9 @@ AUTHENTICATION_BACKENDS = (
 #     # 'REGISTER_SERIALIZER': 'api.serializers.CustomRegisterSerializer',
 
 # }
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.8/howto/static-files/
+
+STATIC_ROOT = 'static'
+STATIC_URL = '/static/'
