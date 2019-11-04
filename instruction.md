@@ -76,5 +76,9 @@ static/
 gcloud app deploy
 ```
 
+<b> Deploy frontend-files </b>
+```
+gsutil rsync -R frontend-api/ gs://cloud-course/
+```
 
 
