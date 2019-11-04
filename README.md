@@ -12,7 +12,7 @@ pip3 install -r requirements.txt
 Run the Django migrations to set up your models:
 ```python
 python manage.py makemigrations
-python manage.py makemigrations polls
+python manage.py makemigrations api
 python manage.py migrate
 ```
 Start a local web server:
