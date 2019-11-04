@@ -3,7 +3,7 @@
 
 Create an isolated Python environment, and install dependencies:
 ```
-virtualenv env
+virtualenv -p python3 env
 source env/bin/activate
 pip install -r requirements.txt
 ```
