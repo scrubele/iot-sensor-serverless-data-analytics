@@ -1,14 +1,14 @@
 # CRUD App using Vue.js and Django
-<h1><i><b>In order to run Web App:</i></b></h1>
+<h2><i><b>In order to run Web App:</i></b></h2>
 
-<h3>Create postgresql database:</h3>
+<h4>Create a postgresql database:</h4>
 
-Install postgresql
+Install postgresql:
 
 ```
     sudo apt install postgresql postgresql-contrib
 ```
-Create user and grant all privileges:
+Create a user and grant all privileges:
 ```
 sudo -u postgres psql
 postgres=# create database cloud;
@@ -16,7 +16,7 @@ postgres=# create user myuser with encrypted password 'mypass';
 postgres=# grant all privileges on database cloud to myuser;
 ```
 
-<h3>Create an isolated Python environment, and install dependencies:</h3>
+<h4>Create an isolated Python environment, and install dependencies:</h4>
 
 ```
 virtualenv -p python3 env
