@@ -40,9 +40,16 @@ if os.getenv('GAE_INSTANCE'):
     pass
 else:
     DATABASES['default']['HOST'] = '127.0.0.1'
-    DATABASES['default']['PORT'] = '5433'
+    DATABASES['default']['PORT'] = '5432' #the same port that proxy has
 ```
-
+<b>Connect to your local proxy db.</b>
+```
+psql "host=127.0.0.1 port=5432 sslmode=disable dbname=cloud user=scrubele"
+```
+```
+\c cloud - connect to your cloud
+    \dt - show all tables.
+```
 <b>Create migrations when proxy is running (IMPORTANT):</b>
 ```
 python manage.py makemigrations
