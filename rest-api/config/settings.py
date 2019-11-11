@@ -11,9 +11,13 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+# from djangoappengine.settings_base import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+# DATABASES['default']['DOMAIN'] = 'googleplex.com'
 
 
 # Quick-start development settings - unsuitable for production
@@ -52,7 +56,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.twitter',
-    'corsheaders',          
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -99,29 +103,24 @@ WSGI_APPLICATION = 'config.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
-if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine'):
-    # Running on production App Engine, so connect to Google Cloud SQL using
-    # the unix socket at /cloudsql/<your-cloudsql-connection string>
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'HOST': os.environ['DB_HOST'],
-            'NAME': os.environ['DB_NAME'],
-            'USER': os.environ['DB_USER'],
-            'PASSWORD': os.environ['DB_PASSWORD']
-        }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'cloud',
+        'USER': 'postgres',
+        'PASSWORD': 'qwer1234****',
+        'PORT': '5432',
     }
+}
+
+DATABASES['default']['HOST'] = '/cloudsql/gothic-sequence-257518:europe-west1:cloud-course-new'
+if os.getenv('GAE_INSTANCE'):
+    pass
 else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'cloud',
-            'USER': 'scrubele',
-            'PASSWORD': 'qwer1234****',
-            'HOST': 'localhost',
-            'PORT': '',
-        }
-    }
+    DATABASES['default']['HOST'] = '127.0.0.1'
+    DATABASES['default']['PORT'] = '5432'
+
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
@@ -202,3 +201,9 @@ AUTHENTICATION_BACKENDS = (
 
 STATIC_ROOT = 'static'
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'media'
+
+if os.getenv('GAE_INSTANCE'):
+    STATIC_URL = 'https://storage.googleapis.com/cloud-course/static/'
+    MEDIA_URL = 'https://storage.googleapis.com/cloud-course/media/'

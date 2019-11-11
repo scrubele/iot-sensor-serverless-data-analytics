@@ -5,4 +5,9 @@ django_allauth==0.40.0
 django_rest_auth==0.9.5
 protobuf==3.10.0
 PyJWT==1.7.1
-rest_framework_nested==0.1.0
+django-cors-headers
+psycopg2
+pillow
+djangorestframework-jwt
+gunicorn==19.3.0
+django-cors-middleware

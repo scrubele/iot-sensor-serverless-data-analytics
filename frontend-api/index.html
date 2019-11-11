@@ -98,7 +98,7 @@
                           <span aria-hidden="true">&times;</span>
                       </button>
                   </div>
-                  <form v-on:sumbit.prevent="addProtectedObject()">
+                  <form v-on:sumbit.prevent="addRobotToProtectedObject(object)">
                       <div class="modal-body">
                           <div class="form-group">
                               <label for="name">Protected Object Name</label>
@@ -116,7 +116,7 @@
                       </div>
                       <div class="modal-footer">
                           <button type="button" class="btn btn-secondary m-progress" data-dismiss="modal">Close</button>
-                          <button type ="submit" class="btn btn-primary" >Save changes</button>
+                          <button type ="button" class="btn btn-primary"  v-on:click="addRobotToProtectedObject(selectedObject.id)">Save changes</button>
                       </div>
                   </form>
               </div>

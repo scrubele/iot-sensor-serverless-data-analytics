@@ -51,15 +51,12 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class TokenSerializer(serializers.HyperlinkedModelSerializer):
-    """
-    Serializer for Token model.
-    """
-    user = UserSerializer(many=False, read_only=True)  # this is add by myself.
+
+    user = UserSerializer(many=False, read_only=True)
+
     class Meta:
         model = Token
-        fields = ('key', 'user')   # there I add the `user` field ( this is my need data 
-
-
+        fields = ('key', 'user')   
 
 class RobotSerializer(serializers.HyperlinkedModelSerializer):
 
@@ -67,25 +64,14 @@ class RobotSerializer(serializers.HyperlinkedModelSerializer):
         model = Robot
         fields = '__all__'
 
-    # def create(self, validated_data):
-    #     album = Robot.objects.create(**validated_data)
-
-
 class DetourPathSerializer(serializers.HyperlinkedModelSerializer):
+    
     class Meta:
         model = DetourPath
         fields = '__all__'
 
 
 class ProtectedObjectSerializer(serializers.ModelSerializer):
-    # robots = serializers.HyperlinkedRelatedField(many=True, view_name='robot-detail', read_only=True,required=False)
-
-    # # robots = serializers.PrimaryKeyRelatedField(queryset=Robot.objects.all(), many=True)
-    # detour_paths = serializers.HyperlinkedRelatedField(many=True, view_name='detourpath-detail', read_only=True,required=False)
-
-    # robots = RobotSerializer(many=True)
-    # detour_paths = DetourPathSerializer(many=True) 
-
     robots = NestedHyperlinkedRelatedField(
         many=True,
         read_only=True,   # Or add a queryset
@@ -101,7 +87,6 @@ class ProtectedObjectSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ProtectedObject
-        # fields = ['id','name','description','size']
         fields = '__all__'
 
     def create(self, validated_data):
@@ -114,9 +99,6 @@ class ProtectedObjectSerializer(serializers.ModelSerializer):
 
         protected_object = ProtectedObject.objects.create(**validated_data)
         protected_object.detour_paths.set([])
-        # for robot in robots_data:
-        #     robot_s = Robot.objects.get(pk=robot)
-        #     protected_object.robots.add(robot_s) 
         return protected_object
 
     def destroy(self, request, pk, format=None):
@@ -125,7 +107,6 @@ class ProtectedObjectSerializer(serializers.ModelSerializer):
             self.perform_destroy(instance)
         except Http404:
             return Response(status=status.HTTP_204_NO_CONTENT)
-
         return Response({'status': 'location deleted'})
 
     def update(self, instance, validated_data):
@@ -134,6 +115,5 @@ class ProtectedObjectSerializer(serializers.ModelSerializer):
         instance.size = validated_data.get('size', instance.size)
         instance.robots = validated_data.get('robots', instance.robots)
         instance.detour_paths = validated_data.get('detour_paths', instance.detour_paths)
+        instance.photo = validated_data.get('photo', instance.photo)
         return instance
-
-    

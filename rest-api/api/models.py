@@ -12,14 +12,6 @@ from django.contrib.auth.models import (
 from django.db import models
 
 class UserManager(BaseUserManager):
-    """
-    Django requires that custom users define their own Manager class. By
-    inheriting from `BaseUserManager`, we get a lot of the same code used by
-    Django to create a `User`. 
-
-    All we have to do is override the `create_user` function which we will use
-    to create `User` objects.
-    """
 
     def create_user(self, username, email, password=None):
         """Create and return a `User` with an email, username and password."""
@@ -60,9 +52,7 @@ class User(AbstractUser):
     def __str__(self):
         return "{}".format(self.email)
         
-        
 class UserProfile(models.Model):
-
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
     title = models.CharField(max_length=5)
     dob = models.DateField()
@@ -72,13 +62,13 @@ class UserProfile(models.Model):
     zip = models.CharField(max_length=5)
     photo = models.ImageField(upload_to='uploads', blank=True)
 
-
 class ProtectedObject(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=250)
     description = models.TextField()
     size = models.CharField(max_length=250, default="")
-
+    photo = models.FileField(upload_to = 'img/', default = 'img/None/no-img.jpg')
+    
 class DetourPath(models.Model):  
    id = models.AutoField(primary_key=True)
    name = models.CharField(max_length=250)
@@ -86,26 +76,9 @@ class DetourPath(models.Model):
    length = models.DecimalField(max_length=None, decimal_places=2, max_digits=19)
    protectedobject = models.ForeignKey(ProtectedObject, related_name='detour_paths', on_delete=models.CASCADE, null=True)
    
-
 class Robot(models.Model):   
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=250)
     detection_algorithm = models.CharField(max_length=250)
     price = models.DecimalField(max_length=250, decimal_places=2, max_digits=19) 
     protectedobject = models.ForeignKey(ProtectedObject, related_name='robots', on_delete=models.CASCADE, null=True)
-
-# Create your models here.
-
-    
-
-# class ProtectedObject_Robot(models.Model):
-#     protected_object = models.ForeignKey('ProtectedObject', on_delete=models.CASCADE)
-#     robot = models.ForeignKey('Robot',on_delete=models.SET_NULL, null=True)
-
-# class ProtectedObject_Detour(models.Model):
-#     protected_object = models.ForeignKey('ProtectedObject', on_delete=models.CASCADE)
-#     detour_path = models.ForeignKey('DetourPath', on_delete=models.CASCADE, null=True)
-
-
-
-

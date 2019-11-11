@@ -1,6 +1,8 @@
 Vue.http.headers.common['X-CSRFToken'] = "{{ csrf_token }}";
 
-const API_URL = "http://127.0.0.1:8000";
+// const API_URL = "https://gothic-sequence-257518.appspot.com/";
+const API_URL = "http://127.0.0.1:8000/";
+
 let vm = new Vue({
   el: '#starting',
   delimiters: ['${','}'],
@@ -10,7 +12,7 @@ let vm = new Vue({
     currentProtectedObject: {},
     message: null,
     newProtectedObject: { 'name': null, 'description': null,  },
-    newRobot:{'name':null, 'detection_algorithm':null, 'price': null},
+    newRobot:{'name':'null', 'detection_algorithm':'null', 'price': 'null'},
     search_term: '',
     selectedObject:'',
   },
@@ -106,6 +108,7 @@ let vm = new Vue({
       
     },
     addRobotToProtectedObject: function(id) {
+      console.log(arguments)
       let api_url = `${API_URL}/api/protected_objects/${id}/robots/`;
       console.log(this.newRobot);
       this.$http.post(api_url,this.newRobot)

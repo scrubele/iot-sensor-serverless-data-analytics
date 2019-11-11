@@ -80,7 +80,6 @@ class RobotViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     def create(self, request, protectedobject_pk=None, *args, **kwargs):
-        
         print(request.data)
         serializer_context = {
             'request': request,
@@ -91,28 +90,14 @@ class RobotViewSet(viewsets.ModelViewSet):
 
         protected_object = ProtectedObject.objects.get(pk=protectedobject_pk)
         print(protected_object.robots.all())
-        # name = protected_object.name
         protected_object.robots.add(robot)
-        print(protected_object.robots.all())
-        # print(name)
-        # protected_object_serializer = ProtectedObjectSerializer(protected_object, context=serializer_context)
-        # print(protected_object_serializer)
-            # self.create(robot_serializer)
-            # robot = Robot.objects.create(dict(request.data.lists()))
+        print(protected_object.robots.all())     
         return  Response(robot_serializer.data)
 
-    # def retrieve(self, request, pk=None, client_pk=None, maildrop_pk=None):
-    #     queryset = MailRecipient.objects.filter(pk=pk, mail_drop=maildrop_pk, mail_drop__client=client_pk)
-    #     maildrop = get_object_or_404(queryset, pk=pk)
-    #     serializer = MailRecipientSerializer(maildrop)
-    #     return Response(serializer.data)
 
 class ProtectedObjectViewSet(viewsets.ModelViewSet):
     queryset = ProtectedObject.objects.all()
     serializer_class = ProtectedObjectSerializer
-
-    # def get_queryset(self):
-    #     return ProtectedObject.objects.filter(protectedObject=self.kwargs['protectedobject_pk'])
 
     def list(self, request, *args, **kwargs):
         queryset = ProtectedObject.objects.all()
