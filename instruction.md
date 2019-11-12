@@ -6,13 +6,6 @@ gcloud sql instances describe [YOUR_INSTANCE_NAME]
 ```
 find <i>connectionName</i> in the results of previous script. For example: <i>gothic-sequence-257518:us-central1:cloud-course</i>
 
-<b>Run proxy and don't turn off:</b></p> 
-<i> proxy is running on 5432, local postgresql on 5433</i>
-
-```
-cloud_sql_proxy_x64.exe -instances="gothic-sequence-257518:us-central1:cloud-course"=tcp:3307
-./cloud_sql_proxy -instances="gothic-sequence-257518:us-central1:cloud-course"=tcp:5432
-```
 
 <i>To change local postgresql port:</i>
 ```
@@ -21,8 +14,6 @@ cloud_sql_proxy_x64.exe -instances="gothic-sequence-257518:us-central1:cloud-cou
 #reload
 /etc/init.d/postgresql restart
 ```
-
-
 <b>Add code to the settings.py:</b>
 ```
 DATABASES = {
@@ -42,6 +33,14 @@ else:
     DATABASES['default']['HOST'] = '127.0.0.1'
     DATABASES['default']['PORT'] = '5432' #the same port that proxy has
 ```
+<b>Run proxy and don't turn off:</b></p> 
+<i> proxy is running on 5432, local postgresql on 5433</i>
+
+```
+cloud_sql_proxy_x64.exe -instances="gothic-sequence-257518:us-central1:cloud-course"=tcp:3307
+./cloud_sql_proxy -instances="gothic-sequence-257518:us-central1:cloud-course"=tcp:5432
+```
+
 <b>Connect to your local proxy db.</b>
 ```
 psql "host=127.0.0.1 port=5432 sslmode=disable dbname=cloud user=scrubele"
