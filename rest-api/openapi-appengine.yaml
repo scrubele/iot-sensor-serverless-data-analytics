@@ -1,0 +1,75 @@
+swagger: '2.0'
+info:
+  title: Django+Vue.js web app
+  description: Sample API on Cloud Endpoints with an App Engine backend
+  version: 1.0.0
+host: cloud-course-osgbjo7jfa-uc.a.run.app
+schemes:
+  - https
+produces:
+  - application/json
+x-google-backend:
+  address: https://gothic-sequence-257518.appspot.com
+  jwt_audience: 20191112t155245
+paths:
+  /api/protected_objects :
+    get:
+      summary: Greet a user
+      operationId: hello
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+    post:
+      summary: Greet a user
+      operationId: hello2
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+  /api/users :
+    get:
+      summary: Greet a user
+      operationId: hello1
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+    post:
+      summary: Greet a user
+      operationId: hello3
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+  /api/auth/registration :
+    get:
+      summary: Greet a user
+      operationId: get-registration
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+    post:
+      summary: Greet a user
+      operationId: post-registration
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+  /api/auth/login :
+    post:
+      summary: Greet a user
+      operationId: post-login
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+

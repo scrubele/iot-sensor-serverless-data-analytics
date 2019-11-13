@@ -2,7 +2,7 @@ from django.conf.urls import url, include
 from rest_framework import routers
 from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
-from api.views import UserViewSet, FacebookLogin, FacebookConnect, ProtectedObjectViewSet, DetourPathViewSet, RobotViewSet
+from api.views import UserViewSet, FacebookLogin, FacebookConnect, ProtectedObjectViewSet, DetourPathViewSet, RobotViewSet, SensorViewSet
 
 from rest_framework_nested import routers
 
@@ -10,6 +10,7 @@ router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'detours', DetourPathViewSet)
 router.register(r'robots', RobotViewSet)
+router.register(r'sensors', SensorViewSet)
 
 router.register(r'protected_objects', ProtectedObjectViewSet , basename='protectedobject')
 protected_object_router = routers.NestedSimpleRouter(router, r'protected_objects', lookup='protectedobject')

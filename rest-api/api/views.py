@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from django.views.decorators.csrf import csrf_exempt
 
-from api.models import User, ProtectedObject, Robot, DetourPath
-from api.serializers import UserSerializer, ProtectedObjectSerializer, DetourPathSerializer, RobotSerializer
+from api.models import User, ProtectedObject, Robot, DetourPath, Sensor
+from api.serializers import UserSerializer, ProtectedObjectSerializer, DetourPathSerializer, RobotSerializer, SensorSerializer
 
 from api.permissions import IsLoggedInUserOrAdmin, IsAdminUser
 from rest_framework.permissions import AllowAny, IsAdminUser
@@ -123,3 +123,6 @@ class ProtectedObjectViewSet(viewsets.ModelViewSet):
         serializer = ProtectedObjectSerializer(protected_object, context=serializer_context)
         return Response(serializer.data)
    
+class SensorViewSet(viewsets.ModelViewSet):
+    queryset = Sensor.objects.all()
+    serializer_class = SensorSerializer 

@@ -119,7 +119,7 @@ if os.getenv('GAE_INSTANCE'):
     pass
 else:
     DATABASES['default']['HOST'] = '127.0.0.1'
-    DATABASES['default']['PORT'] = '5432'
+    DATABASES['default']['PORT'] = '5433'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -176,6 +176,7 @@ REST_FRAMEWORK = {
 import datetime
 
 JWT_AUTH = {
+    'JWT_PUBLIC_KEY':AIzaSyD3P08bf8H13YyzU2_RL4KGxBsUs352VDc,
     'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
     'JWT_ALLOW_REFRESH': True,
     'JWT_AUTH_HEADER_PREFIX': 'Bearer',

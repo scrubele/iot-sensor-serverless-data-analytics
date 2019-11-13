@@ -82,3 +82,15 @@ class Robot(models.Model):
     detection_algorithm = models.CharField(max_length=250)
     price = models.DecimalField(max_length=250, decimal_places=2, max_digits=19) 
     protectedobject = models.ForeignKey(ProtectedObject, related_name='robots', on_delete=models.CASCADE, null=True)
+
+
+class Sensor(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=250)
+    sensor_type = models.CharField(max_length=250)
+    date = models.DateField(blank=True)
+    time = models.TimeField(blank=True)
+    lat = models.FloatField(blank=True)
+    lng = models.FloatField(blank=True)
+    measurement_value = models.FloatField(blank=True)
+

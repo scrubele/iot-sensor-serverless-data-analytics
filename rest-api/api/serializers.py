@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from api.models import *
 from rest_framework.authtoken.models import Token
-from .models import ProtectedObject, Robot, DetourPath
+from .models import ProtectedObject, Robot, DetourPath, Sensor
 from rest_framework_nested.relations import NestedHyperlinkedRelatedField
 
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -117,3 +117,11 @@ class ProtectedObjectSerializer(serializers.ModelSerializer):
         instance.detour_paths = validated_data.get('detour_paths', instance.detour_paths)
         instance.photo = validated_data.get('photo', instance.photo)
         return instance
+
+
+
+class SensorSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Sensor
+        fields = '__all__'
