@@ -34,3 +34,5 @@ Start a local web server:
 python manage.py runserver
 ```
 Browse http://localhost:8000
+
+<b>In order to deploy App Engine application follow steps in </b>[instruction.md](https://github.com/scrubele/cloud-labs/blob/django-vue-web-app/instruction.md)
