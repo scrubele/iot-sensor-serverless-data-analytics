@@ -103,7 +103,7 @@ vpc_access_connector:
 make requirements.txt with all libs and add gunicorn:
 ```
 gunicorn==19.3.0
-``  
+```
 <b>Deploy :) </b>
 ```
 gcloud app deploy
