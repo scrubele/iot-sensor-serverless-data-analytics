@@ -1,5 +1,5 @@
-# CRUD App using Vue.js and Django
-<h2><i><b>In order to run Web App:</i></b></h2>
+# REST API for IoT data processing
+<h2><i><b>In order to run REST API:</i></b></h2>
 
 <h4>Create a postgresql database:</h4>
 
@@ -12,7 +12,7 @@ Create a user and grant all privileges:
 ```
 sudo -u postgres psql
 postgres=# create database cloud;
-postgres=# create user myuser with encrypted password 'mypass';
+postgres=# create user myuser with encrypted password 'passwordd';
 postgres=# grant all privileges on database cloud to myuser;
 ```
 
@@ -23,7 +23,7 @@ virtualenv -p python3 env
 source env/bin/activate
 pip3 install -r requirements.txt
 ```
-Run the Django migrations to set up your models:
+Run the Django migrations to set up your models, create user:
 ```python
 python manage.py makemigrations
 python manage.py makemigrations api
