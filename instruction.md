@@ -77,6 +77,33 @@ gsutil rsync -R static/ gs://cloud-course/static
 ```
 static/
 ```
+    
+add app.yaml:
+```
+runtime: python37
+# env: flexpython manage.py createsuperuser
+entrypoint: gunicorn -b :$PORT config.wsgi
+
+beta_settings:
+    cloud_sql_instances: gothic-sequence-257518:us-central1:cloud-course
+
+runtime_config:
+  python_version: 3
+
+handlers:
+
+- url: /static
+  static_dir: static
+- url: /.*
+  script: auto
+
+vpc_access_connector:
+  name: "projects/gothic-sequence-257518/locations/europe-west1/connectors/django-vue"
+```
+make requirements.txt with all libs and add gunicorn:
+```
+gunicorn==19.3.0
+``  
 <b>Deploy :) </b>
 ```
 gcloud app deploy
