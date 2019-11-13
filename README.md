@@ -28,6 +28,7 @@ Run the Django migrations to set up your models:
 python manage.py makemigrations
 python manage.py makemigrations api
 python manage.py migrate
+python manage.py createsuperuser
 ```
 Start a local web server:
 ```
