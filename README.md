@@ -17,12 +17,13 @@ postgres=# grant all privileges on database cloud to myuser;
 ```
 
 <h4>Create an isolated Python environment, and install dependencies:</h4>
-
+For psycopg2 install: sudo apt install libpq-dev python3-dev
 ```
 virtualenv -p python3 env
 source env/bin/activate
 pip3 install -r requirements.txt
 ```
+
 Run the Django migrations to set up your models:
 ```python
 python manage.py makemigrations
