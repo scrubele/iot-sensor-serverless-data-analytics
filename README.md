@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-# IoT data processing lab using Django
-<h2><i><b>In order to run Web App:</i></b></h2>
-=======
-# REST API for IoT data processing
-<h2><i><b>In order to run REST API:</i></b></h2>
->>>>>>> a171be0ae8020ed314400ecab4e41febbf6bc1e2
 
+# IoT data processing lab using Django
+<h2><i><b>In order to run REST API:</i></b></h2>
 <h4>Create a postgresql database:</h4>
 
 Install postgresql:
