@@ -17,6 +17,11 @@ postgres=# grant all privileges on database cloud to myuser;
 ```
 
 <h4>Create an isolated Python environment, and install dependencies:</h4>
+For psycopg2 install: 
+
+```
+sudo apt install libpq-dev python3-dev
+```
 
 ```
 virtualenv -p python3 env
