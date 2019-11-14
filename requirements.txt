@@ -7,3 +7,4 @@ pillow
 djangorestframework-jwt
 gunicorn==19.3.0
 django-cors-middleware
+djangorestframework
