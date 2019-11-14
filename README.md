@@ -1,4 +1,4 @@
-# CRUD App using Vue.js and Django
+# IoT data processing lab using Django
 <h2><i><b>In order to run Web App:</i></b></h2>
 
 <h4>Create a postgresql database:</h4>
