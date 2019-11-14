@@ -6,14 +6,6 @@ gcloud sql instances describe [YOUR_INSTANCE_NAME]
 ```
 find <i>connectionName</i> in the results of previous script. For example: <i>gothic-sequence-257518:us-central1:cloud-course</i>
 
-
-<i>To change local postgresql port:</i>
-```
-#Open file, find port, change and save:
-/etc/postgresql/11/main/
-#reload
-/etc/init.d/postgresql restart
-```
 <b>Add code to the settings.py:</b>
 ```
 DATABASES = {
@@ -39,6 +31,14 @@ else:
 ```
 cloud_sql_proxy_x64.exe -instances="gothic-sequence-257518:us-central1:cloud-course"=tcp:3307
 ./cloud_sql_proxy -instances="gothic-sequence-257518:us-central1:cloud-course"=tcp:5432
+```
+
+<i>To change local postgresql port to 5433:</i>
+```
+#Open file, find port, change and save:
+/etc/postgresql/11/main/
+#reload
+/etc/init.d/postgresql restart
 ```
 
 <b>Connect to your local proxy db.</b>
