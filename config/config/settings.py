@@ -25,7 +25,10 @@ SECRET_KEY = 'duw!=jx0-5g_xxmqtsoyce-37kqfw@ongxuoy4=8z!o+30cf25'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '.appspot.com', # must add the app engine (project-id) domain here
+    '127.0.0.1', # for local testing 
+]
 
 
 # Application definition
