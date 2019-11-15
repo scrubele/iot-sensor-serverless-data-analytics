@@ -6,3 +6,4 @@ class SensorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Sensor
         fields = '__all__'
+        

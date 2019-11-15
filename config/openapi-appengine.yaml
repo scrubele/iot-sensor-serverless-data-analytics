@@ -1,0 +1,31 @@
+swagger: '2.0'
+info:
+  title: IoT data processing
+  description: Data processing of IoT sensors using serverless technologies
+  version: 1.0.0
+host: cloud-course-p5guh5uvlq-uc.a.run.app
+schemes:
+  - https
+produces:
+  - application/json
+x-google-backend:
+  address: https://iot-data-processing-258913.appspot.com
+  jwt_audience: 994414802550-t0rc8hisebaue4g785bi8mr6uekkcr46.apps.googleusercontent.com
+paths:
+  /api/sensors :
+    get:
+      summary: Get sensors' data
+      operationId: get-sensors
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+    post:
+      summary: Post sensor's data 
+      operationId: post-sensors
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string

@@ -133,3 +133,8 @@ USE_TZ = True
 
 STATIC_ROOT = 'static'
 STATIC_URL = '/static/'
+
+
+service_name = os.environ.get('ENDPOINTS_SERVICE_NAME')
+if os.getenv('GAE_INSTANCE'):
+    STATIC_URL = 'https://storage.googleapis.com/iot-data-processing-258913.appspot.com/static/'

@@ -8,3 +8,5 @@ djangorestframework-jwt
 gunicorn==19.3.0
 django-cors-middleware
 djangorestframework
+google-cloud
+google-cloud-pubsub==1.0.0
