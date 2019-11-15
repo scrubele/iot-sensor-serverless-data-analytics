@@ -67,3 +67,31 @@ Deploy ESP^
 gcloud endpoints services deploy openapi-appengine.yaml \
   --project iot-data-processing-258913
 ```
+
+### Create PubSub topic and subscription
+
+Add pub_sub.py:
+```
+import time
+from google.cloud import pubsub_v1
+
+project_id = "iot-data-processing-258913"
+topic_name = "sensors" 
+
+def publish_message(data):
+    publisher = pubsub_v1.PublisherClient()
+    topic_path = publisher.topic_path(project_id, topic_name)
+
+    data = data.encode('utf-8')
+    future = publisher.publish(
+        topic_path, data, origin='python-sample', username='gcp'
+    )
+    print(future.result())
+```
+
+#### Add calling <b>publish_message()</b> in the create method.
+#### Create BigQuery table 
+#### Create Dataflow between PubSub topic and BigQuery table.
+
+
+### Run servers.py
