@@ -1,5 +1,5 @@
 
-# IoT data processing lab using Django
+# Data processing of IoT sensors using serverless technologies
 <h2><i><b>In order to run REST API:</i></b></h2>
 <h4>Create a postgresql database:</h4>
 
