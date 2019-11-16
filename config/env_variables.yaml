@@ -1,0 +1,4 @@
+env_variables:
+  ENDPOINTS_SERVICE_NAME: iot-data-processing-258913.appspot.com
+  ENDPOINTS_SERVICE_VERSION: 2019-11-14r1 
+  PUBSUB_VERIFICATION_TOKEN: 1234abc

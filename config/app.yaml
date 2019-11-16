@@ -19,6 +19,5 @@ handlers:
 - url: /.*
   script: auto
 
-env_variables:
-  ENDPOINTS_SERVICE_NAME: iot-data-processing-258913.appspot.com
-  ENDPOINTS_SERVICE_VERSION: 2019-11-14r1 
+includes:
+  - env_variables.yaml
