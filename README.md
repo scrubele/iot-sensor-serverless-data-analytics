@@ -40,3 +40,5 @@ Start a local web server:
 python manage.py runserver
 ```
 Browse http://localhost:8000
+
+### Next steps follow in [instruction.md](https://github.com/scrubele/cloud-labs/blob/django-iot-data-processing/Instruction.md)
