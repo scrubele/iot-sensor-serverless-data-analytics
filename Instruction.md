@@ -88,6 +88,7 @@ def publish_message(data):
     )
     print(future.result())
 ```
+#### ADD PUBSUB_VERIFICATION_TOKEN to env_variables.yaml (random string)
 
 #### Add calling <b>publish_message()</b> in the create method.
 #### Create BigQuery table 
