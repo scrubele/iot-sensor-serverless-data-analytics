@@ -29,8 +29,8 @@ gcloud beta run deploy cloud-course \
 Make a note of the hostname in the URL
 * API gateway HOST: https://cloud-course-p5guh5uvlq-uc.a.run.app
 
-Add ENDPOINTS_SERVICE_NAME to env_variable.yaml
-ReDeploy your AppEngine
+Add ENDPOINTS_SERVICE_NAME to env_variable.yaml <p>
+ReDeploy your AppEngine <p>
 Add <b>openapi-appengine.yaml</b>:
 ```
 swagger: '2.0'
