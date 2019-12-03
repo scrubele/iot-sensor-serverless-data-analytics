@@ -26,7 +26,7 @@ gcloud beta run deploy cloud-course \
     --project=iot-data-processing-258913 	
 ```
 
-
+Make a note of the hostname in the URL
 * API gateway HOST: https://cloud-course-p5guh5uvlq-uc.a.run.app
 
 Add <b>openapi-appengine.yaml</b>:
