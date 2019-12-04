@@ -114,7 +114,7 @@ DATABASES = {
     }
 }
 
-DATABASES['default']['HOST'] = '/cloudsql/gothic-sequence-257518:europe-west1:cloud-course-new'
+DATABASES['default']['HOST'] = '/cloudsql/wired-sol-231410:us-central1:cloud-course'
 if os.getenv('GAE_INSTANCE'):
     pass
 else:
@@ -176,7 +176,7 @@ REST_FRAMEWORK = {
 import datetime
 
 JWT_AUTH = {
-    'JWT_PUBLIC_KEY':AIzaSyD3P08bf8H13YyzU2_RL4KGxBsUs352VDc,
+    'JWT_PUBLIC_KEY':'AIzaSyD3P08bf8H13YyzU2_RL4KGxBsUs352VDc',
     'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
     'JWT_ALLOW_REFRESH': True,
     'JWT_AUTH_HEADER_PREFIX': 'Bearer',
@@ -206,5 +206,5 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media'
 
 if os.getenv('GAE_INSTANCE'):
-    STATIC_URL = 'https://storage.googleapis.com/cloud-course/static/'
-    MEDIA_URL = 'https://storage.googleapis.com/cloud-course/media/'
+    STATIC_URL = 'https://storage.googleapis.com/wired-sol-231410.appspot.com/cloud-course/static/'
+    MEDIA_URL = 'https://storage.googleapis.com/wired-sol-231410.appspot.com/cloud-course/media/'

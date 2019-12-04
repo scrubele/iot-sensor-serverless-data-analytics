@@ -3,7 +3,7 @@ runtime: python37
 entrypoint: gunicorn -b :$PORT config.wsgi
 
 beta_settings:
-    cloud_sql_instances: gothic-sequence-257518:us-central1:cloud-course
+    cloud_sql_instances: wired-sol-231410:us-central1:cloud-course 
 
 runtime_config:
   python_version: 3
@@ -19,5 +19,5 @@ handlers:
 - url: /.*
   script: auto
 
-vpc_access_connector:
-  name: "projects/gothic-sequence-257518/locations/europe-west1/connectors/django-vue"
+# vpc_access_connector:
+#   name: "projects/gothic-sequence-257518/locations/europe-west1/connectors/django-vue"
